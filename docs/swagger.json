@@ -1,0 +1,169 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Simple CRUD service for inspirational quotes",
+        "title": "Quotes API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "basePath": "/",
+    "paths": {
+        "/quotes": {
+            "get": {
+                "description": "Returns all quotes or filtered by author (case-insensitive)",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "quotes"
+                ],
+                "summary": "List quotes",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Author to filter",
+                        "name": "author",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/entity.Quote"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Adds a new quote (ID генерируется на сервере)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "quotes"
+                ],
+                "summary": "Create a quote",
+                "parameters": [
+                    {
+                        "description": "Quote to create",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/api.CreateQuoteRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/entity.Quote"
+                        }
+                    },
+                    "400": {
+                        "description": "invalid request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/quotes/random": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "quotes"
+                ],
+                "summary": "Random quote",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/entity.Quote"
+                        }
+                    },
+                    "500": {
+                        "description": "no quotes available",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/quotes/{id}": {
+            "delete": {
+                "tags": [
+                    "quotes"
+                ],
+                "summary": "Delete quote",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Quote ID (UUID)",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "deleted"
+                    },
+                    "400": {
+                        "description": "invalid id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "quote not found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "api.CreateQuoteRequest": {
+            "type": "object",
+            "properties": {
+                "author": {
+                    "type": "string",
+                    "example": "Confucius"
+                },
+                "quote": {
+                    "type": "string",
+                    "example": "Life is really simple, but we insist on making it complicated."
+                }
+            }
+        },
+        "entity.Quote": {
+            "type": "object",
+            "properties": {
+                "author": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "quote": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

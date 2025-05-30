@@ -1,0 +1,110 @@
+basePath: /
+definitions:
+  api.CreateQuoteRequest:
+    properties:
+      author:
+        example: Confucius
+        type: string
+      quote:
+        example: Life is really simple, but we insist on making it complicated.
+        type: string
+    type: object
+  entity.Quote:
+    properties:
+      author:
+        type: string
+      id:
+        type: string
+      quote:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Simple CRUD service for inspirational quotes
+  title: Quotes API
+  version: "1.0"
+paths:
+  /quotes:
+    get:
+      description: Returns all quotes or filtered by author (case-insensitive)
+      parameters:
+      - description: Author to filter
+        in: query
+        name: author
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entity.Quote'
+            type: array
+      summary: List quotes
+      tags:
+      - quotes
+    post:
+      consumes:
+      - application/json
+      description: Adds a new quote (ID генерируется на сервере)
+      parameters:
+      - description: Quote to create
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/api.CreateQuoteRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/entity.Quote'
+        "400":
+          description: invalid request
+          schema:
+            type: string
+      summary: Create a quote
+      tags:
+      - quotes
+  /quotes/{id}:
+    delete:
+      parameters:
+      - description: Quote ID (UUID)
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: deleted
+        "400":
+          description: invalid id
+          schema:
+            type: string
+        "404":
+          description: quote not found
+          schema:
+            type: string
+      summary: Delete quote
+      tags:
+      - quotes
+  /quotes/random:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.Quote'
+        "500":
+          description: no quotes available
+          schema:
+            type: string
+      summary: Random quote
+      tags:
+      - quotes
+swagger: "2.0"
