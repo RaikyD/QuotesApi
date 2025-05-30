@@ -54,7 +54,7 @@ func (r *InMemoryQuoteRepository) GetByAuthor(_ context.Context, author string) 
 
 	var out []entity.Quote
 	for _, q := range r.quotes {
-		if strings.EqualFold(q.Author, author) { // регистр уже не важен
+		if strings.EqualFold(q.Author, author) {
 			out = append(out, q)
 		}
 	}

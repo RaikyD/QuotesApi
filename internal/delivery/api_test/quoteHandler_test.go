@@ -57,7 +57,6 @@ func TestRandomAndDelete(t *testing.T) {
 	srv := httptest.NewServer(router())
 	defer srv.Close()
 
-	// создаём две цитаты
 	for _, txt := range []string{"One", "Two"} {
 		_, _ = http.Post(srv.URL+"/quotes", "application/json",
 			bytes.NewReader([]byte(`{"author":"Tester","quote":"`+txt+`"}`)))
