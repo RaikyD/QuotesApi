@@ -1,10 +1,10 @@
 package main
 
 import (
-	"AiCheto/docs"
-	"AiCheto/internal/delivery/api"
-	"AiCheto/internal/repositories"
-	"AiCheto/internal/usecases"
+	"github.com/RaikyD/QuotesApi/docs"
+	"github.com/RaikyD/QuotesApi/internal/delivery/api"
+	"github.com/RaikyD/QuotesApi/internal/repositories"
+	"github.com/RaikyD/QuotesApi/internal/usecases"
 
 	"github.com/gorilla/mux"
 	httpSwagger "github.com/swaggo/http-swagger/v2"

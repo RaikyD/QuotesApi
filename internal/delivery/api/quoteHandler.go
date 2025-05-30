@@ -1,8 +1,8 @@
 package api
 
 import (
-	"AiCheto/internal/entity"
-	"AiCheto/internal/usecases"
+	"github.com/RaikyD/QuotesApi/internal/entity"
+	"github.com/RaikyD/QuotesApi/internal/usecases"
 
 	"encoding/json"
 	"github.com/google/uuid"

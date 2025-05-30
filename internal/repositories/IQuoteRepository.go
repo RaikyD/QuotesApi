@@ -1,8 +1,8 @@
 package repositories
 
 import (
-	"AiCheto/internal/entity"
 	"context"
+	"github.com/RaikyD/QuotesApi/internal/entity"
 	"github.com/google/uuid"
 )
 

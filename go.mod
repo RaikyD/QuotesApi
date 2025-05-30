@@ -1,4 +1,4 @@
-module AiCheto
+module github.com/RaikyD/QuotesApi
 
 go 1.24.0
 

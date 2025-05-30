@@ -1,11 +1,11 @@
 package api_test_test
 
 import (
-	"AiCheto/internal/delivery/api"
-	"AiCheto/internal/repositories"
-	"AiCheto/internal/usecases"
 	"bytes"
 	"encoding/json"
+	"github.com/RaikyD/QuotesApi/internal/delivery/api"
+	"github.com/RaikyD/QuotesApi/internal/repositories"
+	"github.com/RaikyD/QuotesApi/internal/usecases"
 	"github.com/gorilla/mux"
 	"net/http"
 	"net/http/httptest"

@@ -1,9 +1,9 @@
 package usecases
 
 import (
-	"AiCheto/internal/entity"
-	"AiCheto/internal/repositories"
 	"context"
+	"github.com/RaikyD/QuotesApi/internal/entity"
+	"github.com/RaikyD/QuotesApi/internal/repositories"
 	"github.com/google/uuid"
 )
 
